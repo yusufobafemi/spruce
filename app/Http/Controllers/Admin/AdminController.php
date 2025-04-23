@@ -11,20 +11,16 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function loadSection($section)
+    public function subscribers()
     {
-        $viewPath = 'admin.partials.' . $section . '-content';
-        if (view()->exists($viewPath)) {
-            return response()->json([
-                'success' => true,
-                'html' => view($viewPath)->render()
-            ]);
-        }
-
-        return response()->json([
-            'success' => false,
-            'message' => 'Section not found'
-        ], 404);
+        return view('admin.partials.subscribers'); // blade partial like _subscribers.blade.php
     }
+
+    public function dashboard()
+{
+    return view('admin.partials.dashboard'); // blade partial like _subscribers.blade.php
+}
+
+    
 }
 
