@@ -62,6 +62,7 @@
 
     <!-- Toastr CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+@yield('styles')
 </head>
 <body>
     <!-- Header -->
@@ -161,5 +162,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

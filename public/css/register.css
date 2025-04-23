@@ -1,0 +1,185 @@
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Common form styles */
+.pg-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 95px auto;
+}
+
+.pg-card {
+    background-color: var(--bg-light);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(90, 18, 115, 0.15);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.pg-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(90, 18, 115, 0.25);
+}
+
+.pg-card-header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--text-light);
+    padding: 20px 25px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid var(--secondary);
+}
+
+.pg-card-body {
+    padding: 30px 25px;
+}
+
+.pg-form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.pg-form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-dark);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.pg-form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.pg-form-input:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(138, 78, 171, 0.2);
+}
+
+.pg-form-input.pg-error {
+    border-color: #ff3860;
+}
+
+.pg-error-message {
+    color: #ff3860;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+.pg-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.pg-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.pg-checkbox-label {
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+.pg-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--primary);
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    text-decoration: none;
+}
+
+.pg-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.pg-btn:active {
+    transform: translateY(0);
+}
+
+.pg-btn-secondary {
+    background-color: transparent;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 12px 20px;
+}
+
+.pg-btn-secondary:hover {
+    background-color: transparent;
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.pg-form-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Header and footer styles */
+.pg-header {
+    background-color: var(--primary);
+    color: var(--text-light);
+    padding: 15px 0;
+}
+
+.pg-footer {
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .pg-card-header {
+        padding: 15px 20px;
+        font-size: 20px;
+    }
+    
+    .pg-card-body {
+        padding: 20px 15px;
+    }
+    
+    .pg-form-group {
+        margin-bottom: 20px;
+    }
+    
+    .pg-form-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .pg-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
