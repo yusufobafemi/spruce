@@ -2,68 +2,30 @@
     <div class="subscriber-header">
         <h2>Subscriber Management</h2>
         <div class="subscriber-actions">
-            <div class="search-wrapper">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search subscribers..." id="subscriber-search">
-            </div>
-            <div class="filter-dropdown">
-                <button class="filter-btn">
-                    <i class="fas fa-filter"></i> Filter
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="filter-menu">
-                    <label><input type="checkbox" checked> Active</label>
-                    <label><input type="checkbox" checked> Inactive</label>
-                    <label><input type="checkbox" checked> New (Last 7 days)</label>
-                </div>
-            </div>
             <button class="export-btn" id="export-subscribers">
                 <i class="fas fa-download"></i> Export
             </button>
         </div>
     </div>
 
-    <div class="subscriber-stats">
-        <div class="stat-box">
-            <div class="stat-icon">
-                <i class="fas fa-users"></i>
-            </div>
-            <div class="stat-info">
-                <h3>Total Subscribers</h3>
-                <div class="stat-value" data-count="5621">0</div>
-            </div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-icon">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="stat-info">
-                <h3>Growth Rate</h3>
-                <div class="stat-value">+12.4%</div>
-                <div class="stat-period">vs last month</div>
-            </div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-icon">
-                <i class="fas fa-envelope-open"></i>
-            </div>
-            <div class="stat-info">
-                <h3>Open Rate</h3>
-                <div class="stat-value">68.5%</div>
-                <div class="stat-period">last campaign</div>
-            </div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-icon">
-                <i class="fas fa-user-plus"></i>
-            </div>
-            <div class="stat-info">
-                <h3>New Subscribers</h3>
-                <div class="stat-value" data-count="247">0</div>
-                <div class="stat-period">last 7 days</div>
-            </div>
-        </div>
-    </div>
+   {{-- this is component to show the stats cards --}}
+   <div class="subscriber-stats">
+    <x-subscriber-stat-box 
+        icon="fas fa-users" 
+        title="Total Subscribers" 
+        :count="$totalSubscribers ?? 0" 
+    />
+
+    <x-subscriber-stat-box 
+        icon="fas fa-user-plus" 
+        title="New Subscribers" 
+        :count="$newSubscribers ?? 0" 
+        subtitle="last 24 hours" 
+    />
+    {{-- <x-subscriber-stat-box icon="fas fa-chart-line" title="Growth Rate" value="+12.4%" subtitle="vs last month" />
+    <x-subscriber-stat-box icon="fas fa-envelope-open" title="Open Rate" value="68.5%" subtitle="last campaign" /> --}}
+
+   </div>
 
     <div class="subscriber-table-wrapper">
         <table class="subscriber-table" id="subscriber-table">
@@ -76,10 +38,7 @@
                         </label>
                     </th>
                     <th>Email <i class="fas fa-sort"></i></th>
-                    <th>Name <i class="fas fa-sort"></i></th>
                     <th>Date Subscribed <i class="fas fa-sort"></i></th>
-                    <th>Status <i class="fas fa-sort"></i></th>
-                    <th>Source <i class="fas fa-sort"></i></th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -92,14 +51,10 @@
                         </label>
                     </td>
                     <td>john.doe@example.com</td>
-                    <td>John Doe</td>
                     <td>Apr 15, 2023</td>
-                    <td><span class="status-badge active">Active</span></td>
-                    <td>Landing Page</td>
                     <td>
                         <div class="action-buttons">
-                            <button class="action-btn edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn email-btn" title="Send Email"><i class="fas fa-envelope"></i></button>
+                            <button class="action-btn email-btn" title="Send Email"><i class="fas fa-copy"></i></button>
                             <button class="action-btn delete-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </td>
@@ -112,14 +67,10 @@
                         </label>
                     </td>
                     <td>jane.smith@example.com</td>
-                    <td>Jane Smith</td>
                     <td>Apr 18, 2023</td>
-                    <td><span class="status-badge active">Active</span></td>
-                    <td>App Download</td>
                     <td>
                         <div class="action-buttons">
-                            <button class="action-btn edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn email-btn" title="Send Email"><i class="fas fa-envelope"></i></button>
+                            <button class="action-btn email-btn" title="Send Email"><i class="fas fa-copy"></i></button>
                             <button class="action-btn delete-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </td>

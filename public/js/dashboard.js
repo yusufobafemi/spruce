@@ -31,13 +31,13 @@ $(document).ready(function () {
                 loadScriptDynamically(scriptPath, function () {
                     // ✅ wait for DOM content + script, THEN run init
                     const interval = setInterval(() => {
-                        if ($('.dashboard-content .stat-number').length > 0) {
+                        // if ($('.dashboard-content .stat-number').length > 0) {
                             clearInterval(interval);
     
                             if (typeof window[`init_${script}_js`] === 'function') {
                                 window[`init_${script}_js`]();
                             }
-                        }
+                        // }
                     }, 0);
                 });
             },

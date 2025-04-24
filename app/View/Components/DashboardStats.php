@@ -16,32 +16,28 @@ class DashboardStats extends Component
     {
         $now = Carbon::now();
 
-        // Period date ranges
+        // Determine date ranges based on period
         switch ($period) {
             case 'today':
                 $startDate = Carbon::today();
                 $prevStartDate = Carbon::yesterday()->startOfDay();
                 $prevEndDate = Carbon::yesterday()->endOfDay();
                 break;
-
             case 'week':
                 $startDate = $now->copy()->startOfWeek();
                 $prevStartDate = $now->copy()->subWeek()->startOfWeek();
                 $prevEndDate = $now->copy()->subWeek()->endOfWeek();
                 break;
-
             case 'month':
                 $startDate = $now->copy()->startOfMonth();
                 $prevStartDate = $now->copy()->subMonth()->startOfMonth();
                 $prevEndDate = $now->copy()->subMonth()->endOfMonth();
                 break;
-
             case 'year':
                 $startDate = $now->copy()->startOfYear();
                 $prevStartDate = $now->copy()->subYear()->startOfYear();
                 $prevEndDate = $now->copy()->subYear()->endOfYear();
                 break;
-
             default:
                 $startDate = Carbon::today();
                 $prevStartDate = Carbon::yesterday()->startOfDay();
@@ -58,7 +54,7 @@ class DashboardStats extends Component
         $prevSubscriberCount = Subscriber::whereBetween('created_at', [$prevStartDate, $prevEndDate])->count();
         $prevRedirectCount = DownloadClick::whereBetween('created_at', [$prevStartDate, $prevEndDate])->count();
 
-        // Helper to calculate percentage change and direction
+        // Helper for % change
         $calcChange = function ($current, $previous) {
             if ($previous == 0 && $current > 0) {
                 return ['change' => 100, 'type' => 'positive'];
@@ -69,19 +65,20 @@ class DashboardStats extends Component
             $change = round((($current - $previous) / $previous) * 100, 1);
             return [
                 'change' => abs($change),
-                'type' => $change > 0 ? 'positive' : ($change < 0 ? 'negative' : 'neutral')
+                'type' => $change > 0 ? 'positive' : ($change < 0 ? 'negative' : 'neutral'),
             ];
         };
 
-        // Conversion Rate Calculation
-        $conversionRate = $visitorCount > 0 ? round(($subscriberCount / $visitorCount) * 100, 1) : 0;
-        $prevConversionRate = $prevVisitorCount > 0 ? round(($prevSubscriberCount / $prevVisitorCount) * 100, 1) : 0;
+        // Conversion rate: Download clicks / Visits
+        $conversionRate = $visitorCount > 0 ? round(($redirectCount / $visitorCount) * 100, 1) : 0;
+        $prevConversionRate = $prevVisitorCount > 0 ? round(($prevRedirectCount / $prevVisitorCount) * 100, 1) : 0;
         $conversionChange = $calcChange($conversionRate, $prevConversionRate);
 
         $visitorChange = $calcChange($visitorCount, $prevVisitorCount);
         $subscriberChange = $calcChange($subscriberCount, $prevSubscriberCount);
         $redirectChange = $calcChange($redirectCount, $prevRedirectCount);
 
+        // Assign stats
         $this->stats = [
             [
                 'type' => 'visitors',

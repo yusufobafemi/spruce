@@ -106,6 +106,33 @@ $(document).ready(function() {
     );
 });
 
+function animateCount(el, target, duration = 1000) {
+    const start = 0;
+    const startTime = performance.now();
+
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(progress * target);
+        el.textContent = value.toLocaleString(); // formats numbers nicely
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+function updateStatValues() {
+    document.querySelectorAll('.stat-value').forEach(el => {
+        const count = parseInt(el.getAttribute('data-count'), 10);
+        if (!isNaN(count)) {
+            animateCount(el, count);
+        }
+    });
+}
+
 // Animate stat numbers with counting effect
 function animateStatNumbers() {
     $('.stat-value[data-count]').each(function() {
@@ -129,5 +156,5 @@ function animateStatNumbers() {
 
 function init_subscribers_js() {
     console.log('Subscribers JS loaded.');
-    animateStatNumbers();
+    updateStatValues();
 }

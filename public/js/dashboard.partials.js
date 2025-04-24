@@ -325,8 +325,6 @@ function updateDashboardStats(stats) {
             ${data.change}% <span class="vs-period">vs ${data.period === 'today' ? 'yesterday' : `last ${data.period}`}</span>
         `);
     });
-
-    console.log('Stats updated and animated!');
 }
 
 
@@ -381,7 +379,6 @@ $(document).ready(function() {
             method: 'GET',
             data: { period: period },
             success: function(response) {
-                console.log(period);
                 // Update stats dynamically based on the response
                 updateDashboardStats(response);
             },
