@@ -3,10 +3,12 @@
         <h1>Dashboard Overview</h1>
         <div class="date-picker">
             @foreach (['Today', 'Week', 'Month', 'Year'] as $label)
-                <button class="date-btn {{ strtolower($label) === 'today' ? 'active' : '' }}">{{ $label }}</button>
+                <button class="date-btn {{ strtolower($label) === 'today' ? 'active' : '' }}" 
+                        data-period="{{ strtolower($label) }}">
+                    {{ $label }}
+                </button>
             @endforeach
-            <button class="date-btn custom"><i class="fas fa-calendar"></i> Custom</button>
-        </div>
+        </div>        
     </div>
 
     <!-- Stats Cards -->
@@ -23,10 +25,11 @@
                     </div>
                     <div class="stat-change {{ $stat['change_type'] }}">
                         <i class="fas fa-arrow-{{ $stat['change_type'] === 'positive' ? 'up' : 'down' }}"></i>
-                        {{ $stat['change'] }}% <span>vs last week</span>
+                        {{ $stat['change'] }}% <span class="vs-period">vs {{ $stat['period'] === 'today' ? 'yesterday' : 'last '.strtolower($stat['period']) }}</span>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
 </div>
+

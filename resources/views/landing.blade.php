@@ -211,14 +211,14 @@
                 <h2 id="download-heading">Download the <span>Spruce App</span></h2>
                 <p>Experience effortless bill payments and visitor management on your smartphone. Available for iOS and Android devices.</p>
                 <div class="download-buttons">
-                    <a href="#" class="download-btn">
-                        <i class="fab fa-apple" aria-hidden="true"></i>
+                    <a href="{{ route('track.download', 'apple') }}" class="download-btn" target="_blank" rel="noopener">
+                        <i class="fab fa-apple"></i>
                         <span>Download on<br><strong>App Store</strong></span>
-                    </a>
-                    <a href="#" class="download-btn">
-                        <i class="fab fa-google-play" aria-hidden="true"></i>
+                    </a>  
+                    <a href="{{ route('track.download', 'google') }}" class="download-btn" target="_blank" rel="noopener">
+                        <i class="fab fa-google-play"></i>
                         <span>Get it on<br><strong>Google Play</strong></span>
-                    </a>
+                    </a>                                        
                 </div>
                 <div class="download-features">
                     <div class="download-feature">

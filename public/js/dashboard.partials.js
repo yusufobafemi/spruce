@@ -244,23 +244,91 @@ function animateStatNumbers() {
     });
 }
 
+
 function updateStatCardData() {
     $('.stat-card').each(function () {
         const $this = $(this);
         const statNumber = $this.find('.stat-number');
-        const dataCount = statNumber.data('count');
+        const newCount = statNumber.data('count');
 
         // Check if this stat-number originally had a % inside it
         const hasPercent = statNumber.html().includes('%');
 
-        // Set the number with commas, and optionally add the % symbol
-        statNumber.text(dataCount.toLocaleString());
+        // Remove any existing text/percentage
+        statNumber.html('');
 
-        if (hasPercent) {
-            statNumber.append('<span>%</span>');
-        }
+        // Animate from current number (or 0) to new count
+        const currentVal = parseInt(statNumber.text().replace(/[^0-9]/g, '')) || 0;
+
+        $({ countNum: currentVal }).animate(
+            { countNum: newCount },
+            {
+                duration: 1500,
+                easing: 'swing',
+                step: function () {
+                    statNumber.text(Math.floor(this.countNum).toLocaleString());
+                },
+                complete: function () {
+                    statNumber.text(newCount.toLocaleString());
+
+                    if (hasPercent) {
+                        statNumber.append('<span>%</span>');
+                    }
+                }
+            }
+        );
     });
 }
+
+
+function updateDashboardStats(stats) {
+    const statMap = {
+        visitors: '.stat-card.visitors',
+        clicks: '.stat-card.clicks',
+        subscribers: '.stat-card.subscribers',
+        conversion: '.stat-card.conversion'
+    };
+
+    Object.keys(statMap).forEach((key) => {
+        const card = $(statMap[key]);
+        const data = stats.find(item => item.type === key);
+        if (!data) return;
+
+        // Animate the stat number
+        const numberElem = card.find('.stat-number');
+        const oldVal = parseFloat(numberElem.text());
+        const newVal = parseFloat(data.count);
+
+        $({ Counter: oldVal }).animate(
+            { Counter: newVal },
+            {
+                duration: 800,
+                easing: 'swing',
+                step: function (now) {
+                    if (key === 'conversion') {
+                        numberElem.html(Math.ceil(now) + '<span>%</span>');
+                    } else {
+                        numberElem.text(Math.ceil(now));
+                    }
+                }
+            }
+        );
+
+        // Update change percentage & arrow direction
+        const changeElem = card.find('.stat-change');
+        const isPositive = data.change_type === 'positive';
+        changeElem
+            .removeClass('positive negative')
+            .addClass(isPositive ? 'positive' : 'negative');
+        changeElem.html(`
+            <i class="fas fa-arrow-${isPositive ? 'up' : 'down'}"></i>
+            ${data.change}% <span class="vs-period">vs ${data.period === 'today' ? 'yesterday' : `last ${data.period}`}</span>
+        `);
+    });
+
+    console.log('Stats updated and animated!');
+}
+
 
 
 $(document).ready(function() {
@@ -299,10 +367,29 @@ $(document).ready(function() {
     );
 
     // Date picker functionality
-    $('.date-btn').on('click', function() {
+    // $('.date-btn').on('click', function() {
+    //     $('.date-btn').removeClass('active');
+    //     $(this).addClass('active');
+    // });
+
+    $(document).on('click', '.date-btn', function() {
+        var period = $(this).text().toLowerCase(); // Or use data-period
         $('.date-btn').removeClass('active');
         $(this).addClass('active');
-    });
+        $.ajax({
+            url: window.routes.getDashboardStats,
+            method: 'GET',
+            data: { period: period },
+            success: function(response) {
+                console.log(period);
+                // Update stats dynamically based on the response
+                updateDashboardStats(response);
+            },
+            error: function(xhr) {
+                console.error('Error loading dashboard stats', xhr);
+            }
+        });
+    });    
 
     // Chart action buttons
     $('.chart-action').on('click', function() {
@@ -333,6 +420,48 @@ function updateChartsForDarkMode(isDarkMode) {
     // Update all charts
     Object.values(window.appCharts).forEach(chart => chart.update());
 }
+
+document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        const targetId = this.dataset.target;
+        const input = document.getElementById(targetId);
+        input.select();
+        document.execCommand('copy');
+        this.innerHTML = '<i class="fas fa-check"></i>';
+        setTimeout(() => {
+            this.innerHTML = '<i class="fas fa-copy"></i>';
+        }, 1000);
+    });
+});
+
+$('#app-links-form').on('submit', function(e) {
+    e.preventDefault();
+
+    const $btn = $('.save-links-btn');
+    const originalBtnHtml = $btn.html(); // Store original button content
+
+    $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Saving...');
+
+    $.ajax({
+        url: window.routes.saveAppLinks,
+        method: 'POST',
+        data: $(this).serialize(),
+        success: function(response) {
+            $btn.html('<i class="fas fa-check-circle text-success"></i> Saved!');
+            setTimeout(() => {
+                $btn.html(originalBtnHtml).prop('disabled', false);
+            }, 1500);
+        },
+        error: function(xhr) {
+            $btn.html('<i class="fas fa-times-circle text-danger"></i> Error!');
+            setTimeout(() => {
+                $btn.html(originalBtnHtml).prop('disabled', false);
+            }, 1500);
+        }
+    });
+});
+
+
 
 function init_dashboard_js() {
     console.log('Dashboard JS loaded.');

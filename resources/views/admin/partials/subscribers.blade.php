@@ -124,66 +124,6 @@
                         </div>
                     </td>
                 </tr>
-                <tr class="subscriber-row new">
-                    <td>
-                        <label class="checkbox-container">
-                            <input type="checkbox" class="subscriber-checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </td>
-                    <td>robert.johnson@example.com</td>
-                    <td>Robert Johnson</td>
-                    <td>Apr 22, 2023</td>
-                    <td><span class="status-badge active">Active</span></td>
-                    <td>Referral</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn email-btn" title="Send Email"><i class="fas fa-envelope"></i></button>
-                            <button class="action-btn delete-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="subscriber-row">
-                    <td>
-                        <label class="checkbox-container">
-                            <input type="checkbox" class="subscriber-checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </td>
-                    <td>sarah.williams@example.com</td>
-                    <td>Sarah Williams</td>
-                    <td>Apr 10, 2023</td>
-                    <td><span class="status-badge inactive">Inactive</span></td>
-                    <td>Landing Page</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn email-btn" title="Send Email"><i class="fas fa-envelope"></i></button>
-                            <button class="action-btn delete-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="subscriber-row new">
-                    <td>
-                        <label class="checkbox-container">
-                            <input type="checkbox" class="subscriber-checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </td>
-                    <td>michael.brown@example.com</td>
-                    <td>Michael Brown</td>
-                    <td>Apr 23, 2023</td>
-                    <td><span class="status-badge active">Active</span></td>
-                    <td>App Download</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn email-btn" title="Send Email"><i class="fas fa-envelope"></i></button>
-                            <button class="action-btn delete-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                        </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>

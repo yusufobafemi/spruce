@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('subscribers', function (Blueprint $table) {
-            $table->unique('email');
+        Schema::create('app_links', function (Blueprint $table) {
+            $table->id();
+            $table->string('platform'); // e.g. apple, google
+            $table->text('url');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('subscribers', function (Blueprint $table) {
-            $table->dropUnique(['email']);
-        });
+        Schema::dropIfExists('app_links');
     }
 };

@@ -18,7 +18,7 @@ $(document).ready(function () {
         $('.sidebar-menu li').removeClass('active');
         $link.closest('li').addClass('active');
     
-        $('#ajaxLoader').fadeIn(100);
+        $('#ajaxLoader').fadeIn(50);
     
         $.ajax({
             url: url,
@@ -38,14 +38,14 @@ $(document).ready(function () {
                                 window[`init_${script}_js`]();
                             }
                         }
-                    }, 50);
+                    }, 0);
                 });
             },
             error: function () {
                 $('.dashboard-content').html('<div class="error-msg">Error loading content. Please try again.</div>');
             },
             complete: function () {
-                $('#ajaxLoader').fadeOut(100);
+                $('#ajaxLoader').fadeOut(50);
             }
         });
     }    
@@ -62,3 +62,4 @@ $(document).ready(function () {
         loadContent($defaultLink);
     }
 });
+

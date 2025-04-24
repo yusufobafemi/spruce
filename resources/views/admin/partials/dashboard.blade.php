@@ -1,6 +1,12 @@
 {{-- this si to show dashboard stats --}}
 <x-dashboard-stats />
 
+<x-app-links 
+    apple-link="https://apps.apple.com/app/spruce/id1234567890" 
+    google-link="https://play.google.com/store/apps/details?id=com.spruce.app" 
+/>
+
+
 <!-- Charts Section -->
 <div class="charts-container split-section">
     <div class="chart-card visitors-chart">
