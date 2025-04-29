@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AppLinkController;
 use App\Http\Controllers\DownloadClickController;
 use App\Http\Controllers\DashboardStatsController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,12 @@ use App\Http\Controllers\DashboardStatsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::post('/logout', function () {
+    Auth::logout(); // Log out the user
+    return redirect('/'); // Redirect to the home page
+})->name('logout');
+
 
 Route::get('/', [AppLinkController::class, 'showLanding']);
 
@@ -40,3 +47,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/admin/save-app-links', [\App\Http\Controllers\AppLinkController::class, 'save'])->name('admin.save-app-links');
 
 Route::get('/admin/get-dashboard-stats', [DashboardStatsController::class, 'index'])->name('admin.get-dashboard-stats');
+
+// Route::get('/admin/subscribers/show', [AdminController::class, 'show']);
+Route::get('/admin/subscribers/export', [AdminController::class, 'export']);
+

@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $seo['title'] ?? 'Spruce - A Smarter Facility Solution' }}</title>
+    <!-- Favicon & App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <link rel="canonical" href="{{ url()->current() }}">
+    
+    {{-- this is for seo --}}
     <meta name="description" content="{{ $seo['description'] ?? 'Revolutionizing bill payments and facility access management for residents, facility managers, and property owners.' }}">
-    <meta name="keywords" content="facility management, bill payments, visitor management, estate management, smart app">
+    <meta name="keywords" content="{{ $seo['keywords'] ?? 'facility management, smart estates, utility bills, visitor access, Nigeria' }}">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Spruce">
 
@@ -70,16 +78,27 @@
         <div class="container">
             <div class="logo">
                 <a href="{{ url('/') }}">
-                    <img loading="lazy" src="{{ asset('images/logo-dark.png') }}" alt="Spruce Logo">
+                    <img loading="lazy" src="{{ asset('images/logo-dark.png') }}" alt="Spruce smart facility management logo">
                 </a>
             </div>
             <nav aria-label="Main navigation">
                 <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#benefits">Benefits</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <!-- Close button for mobile only -->
+                    <div class="mobile-close-btn">
+                        <span class="close-icon">×</span>
+                    </div>
+                    @if(request()->is('dashboard*'))
+                    <!-- If the user is on the dashboard, show only the Blog link -->
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{{ url('/another-url') }}">Blog</a></li>
+                    @else
+                        <!-- Regular links for other pages -->
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#process">Process</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    @endif
                 </ul>
                 <div class="mobile-menu-btn" aria-label="Toggle mobile menu">
                     <span></span>
@@ -103,7 +122,7 @@
             <div class="footer-top">
                 <div class="footer-logo">
                     <a href="{{ url('/') }}">
-                        <img loading="lazy" src="{{ asset('images/logo-light.png') }}" alt="Spruce Logo">
+                        <img loading="lazy" src="{{ asset('images/logo-light.png') }}" alt="Spruce smart facility management logo">
                     </a>
                     <p>...a smarter facility solution</p>
                 </div>
@@ -150,8 +169,8 @@
             <div class="footer-bottom">
                 <p>© 2025 Spruce. All rights reserved.</p>
                 <div class="footer-bottom-links">
-                    <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
-                    <a href="{{ url('/terms-of-service') }}">Terms of Service</a>
+                    {{-- <a href="{{ url('/privacy-policy') }}">Privacy Policy</a> --}}
+                    {{-- <a href="{{ url('/terms-of-service') }}">Terms of Service</a> --}}
                 </div>
             </div>
         </div>

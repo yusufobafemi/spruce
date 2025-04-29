@@ -244,121 +244,7 @@
     </section>
 
     <!-- Blog Section -->
-    <section id="blog" aria-labelledby="blog-heading">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 id="blog-heading">Latest from our <span>Blog</span></h2>
-                <p>Insights and updates from the world of <a href="{{ url('/blog') }}">estate management</a></p>
-            </div>
-            <div class="blog-grid">
-                <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="blog-image">
-                        <img loading="lazy" src="{{ asset('images/preview1.png') }}" alt="Future of estate management">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-tag">Trends</div>
-                        <h3>The Future of Estate Management Today</h3>
-                        <p>Discover how technology transforms property management into seamless digital experiences.</p>
-                        <a href="{{ url('/blog/future-estate-management') }}" class="blog-link">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                    </div>
-                    <script type="application/ld+json">
-                    {
-                        "@context": "https://schema.org",
-                        "@type": "BlogPosting",
-                        "headline": "The Future of Estate Management Today",
-                        "description": "Discover how technology transforms property management into seamless digital experiences.",
-                        "image": "{{ asset('lovable-uploads/56fa4ba1-c9ff-4599-a8af-728baf679d9c.png') }}",
-                        "url": "{{ url('/blog/future-estate-management') }}",
-                        "datePublished": "2025-04-01",
-                        "author": {
-                            "@type": "Organization",
-                            "name": "Spruce"
-                        },
-                        "publisher": {
-                            "@type": "Organization",
-                            "name": "Spruce",
-                            "logo": {
-                                "@type": "ImageObject",
-                                "url": "{{ asset('lovable-uploads/c580f324-d717-4f95-9134-4fd26a3f4dcc.png') }}"
-                            }
-                        }
-                    }
-                    </script>
-                </article>
-                <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="blog-image">
-                        <img loading="lazy" src="{{ asset('images/preview2.png') }}" alt="Effortless bill payments with Spruce">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-tag">Features</div>
-                        <h3>Effortless Bill Payments: The Spruce Way</h3>
-                        <p>Learn how Spruce reduces late payments by 30% and boosts on-time utility payments.</p>
-                        <a href="{{ url('/blog/effortless-bill-payments') }}" class="blog-link">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                    </div>
-                    <script type="application/ld+json">
-                    {
-                        "@context": "https://schema.org",
-                        "@type": "BlogPosting",
-                        "headline": "Effortless Bill Payments: The Spruce Way",
-                        "description": "Learn how Spruce reduces late payments by 30% and boosts on-time utility payments.",
-                        "image": "{{ asset('lovable-uploads/f89a604d-ea60-4c9d-8d4d-780d644192b6.png') }}",
-                        "url": "{{ url('/blog/effortless-bill-payments') }}",
-                        "datePublished": "2025-03-15",
-                        "author": {
-                            "@type": "Organization",
-                            "name": "Spruce"
-                        },
-                        "publisher": {
-                            "@type": "Organization",
-                            "name": "Spruce",
-                            "logo": {
-                                "@type": "ImageObject",
-                                "url": "{{ asset('lovable-uploads/c580f324-d717-4f95-9134-4fd26a3f4dcc.png') }}"
-                            }
-                        }
-                    }
-                    </script>
-                </article>
-                <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="blog-image">
-                        <img loading="lazy" src="{{ asset('images/preview3.png') }}" alt="Smart visitor management security">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-tag">Security</div>
-                        <h3>Smart Visitor Management: Enhanced Security</h3>
-                        <p>Discover how digital visitor systems improve estate safety and convenience.</p>
-                        <a href="{{ url('/blog/smart-visitor-management') }}" class="blog-link">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                    </div>
-                    <script type="application/ld+json">
-                    {
-                        "@context": "https://schema.org",
-                        "@type": "BlogPosting",
-                        "headline": "Smart Visitor Management: Enhanced Security",
-                        "description": "Discover how digital visitor systems improve estate safety and convenience.",
-                        "image": "{{ asset('lovable-uploads/b25658ad-7cb5-402a-a695-0e2bb10c1641.png') }}",
-                        "url": "{{ url('/blog/smart-visitor-management') }}",
-                        "datePublished": "2025-02-20",
-                        "author": {
-                            "@type": "Organization",
-                            "name": "Spruce"
-                        },
-                        "publisher": {
-                            "@type": "Organization",
-                            "name": "Spruce",
-                            "logo": {
-                                "@type": "ImageObject",
-                                "url": "{{ asset('lovable-uploads/c580f324-d717-4f95-9134-4fd26a3f4dcc.png') }}"
-                            }
-                        }
-                    }
-                    </script>
-                </article>
-            </div>
-            <div class="blog-cta" data-aos="fade-up">
-                <a href="{{ url('/blog') }}" class="btn btn-secondary">View All Articles</a>
-            </div>
-        </div>
-    </section>
+    <x-blog-section-component />
 
     <!-- Newsletter Section -->
     <section id="newsletter" aria-labelledby="newsletter-heading">
@@ -377,7 +263,7 @@
                     </form>
                 </div>
                 <div class="newsletter-image" data-aos="fade-left">
-                    <img loading="lazy" src="{{ asset('images/subscribe.png') }}" alt="Spruce logo in gold">
+                    <img loading="lazy" src="{{ asset('images/subscribe.png') }}" alt="Spruce smart facility management logo in gold">
                     <div class="circle-decoration"></div>
                 </div>
             </div>

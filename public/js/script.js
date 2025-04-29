@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileCloseBtn = document.querySelector('.mobile-close-btn');
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn) {
@@ -106,13 +107,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Close menu with X button
+    if (mobileCloseBtn) {
+        mobileCloseBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+    }
+    
     // Close mobile menu when clicking on a link
     const navLinksItems = document.querySelectorAll('.nav-links a');
     navLinksItems.forEach(link => {
         link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
             navLinks.classList.remove('active');
+            menuOverlay.classList.remove('active');
             document.body.classList.remove('no-scroll');
         });
+    });
+    
+    // Close menu when clicking on overlay
+    menuOverlay.addEventListener('click', () => {
+        mobileMenuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    });
+    
+    // Close menu on escape key press
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
     });
 
     // Header scroll effect

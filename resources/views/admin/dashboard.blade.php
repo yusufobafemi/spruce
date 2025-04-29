@@ -41,7 +41,7 @@
                 </nav>
             </div>
             <div class="sidebar-footer">
-                <a href="#logout" class="logout-btn">
+                <a href="#" class="logout-btn" id="logoutBtn">
                     <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
                 </a>
             </div>
@@ -62,4 +62,25 @@
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
+<script>
+    document.getElementById('logoutBtn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        
+        // Create a new form dynamically
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{{ route('logout') }}';
+        
+        // Add the CSRF token as a hidden field
+        var csrfToken = document.createElement('input');
+        csrfToken.type = 'hidden';
+        csrfToken.name = '_token';
+        csrfToken.value = '{{ csrf_token() }}';
+        form.appendChild(csrfToken);
+        
+        // Submit the form
+        document.body.appendChild(form);
+        form.submit();
+    });
+</script>
 @endsection

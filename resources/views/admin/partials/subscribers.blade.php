@@ -8,24 +8,18 @@
         </div>
     </div>
 
-   {{-- this is component to show the stats cards --}}
-   <div class="subscriber-stats">
-    <x-subscriber-stat-box 
-        icon="fas fa-users" 
-        title="Total Subscribers" 
-        :count="$totalSubscribers ?? 0" 
-    />
+    {{-- this is component to show the stats cards --}}
+    <div class="subscriber-stats">
+        <x-subscriber-stat-box icon="fas fa-users" title="Total Subscribers" :count="$totalSubscribers ?? 0" />
 
-    <x-subscriber-stat-box 
-        icon="fas fa-user-plus" 
-        title="New Subscribers" 
-        :count="$newSubscribers ?? 0" 
-        subtitle="last 24 hours" 
-    />
-    {{-- <x-subscriber-stat-box icon="fas fa-chart-line" title="Growth Rate" value="+12.4%" subtitle="vs last month" />
-    <x-subscriber-stat-box icon="fas fa-envelope-open" title="Open Rate" value="68.5%" subtitle="last campaign" /> --}}
+        <x-subscriber-stat-box icon="fas fa-user-plus" title="New Subscribers" :count="$newSubscribers ?? 0"
+            subtitle="last 24 hours" />
+        {{-- <x-subscriber-stat-box icon="fas fa-chart-line" title="Growth Rate" value="+12.4%"
+            subtitle="vs last month" />
+        <x-subscriber-stat-box icon="fas fa-envelope-open" title="Open Rate" value="68.5%" subtitle="last campaign" />
+        --}}
 
-   </div>
+    </div>
 
     <div class="subscriber-table-wrapper">
         <table class="subscriber-table" id="subscriber-table">
@@ -43,68 +37,61 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="subscriber-row">
-                    <td>
-                        <label class="checkbox-container">
-                            <input type="checkbox" class="subscriber-checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </td>
-                    <td>john.doe@example.com</td>
-                    <td>Apr 15, 2023</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn email-btn" title="Send Email"><i class="fas fa-copy"></i></button>
-                            <button class="action-btn delete-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="subscriber-row">
-                    <td>
-                        <label class="checkbox-container">
-                            <input type="checkbox" class="subscriber-checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </td>
-                    <td>jane.smith@example.com</td>
-                    <td>Apr 18, 2023</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn email-btn" title="Send Email"><i class="fas fa-copy"></i></button>
-                            <button class="action-btn delete-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                        </div>
-                    </td>
-                </tr>
+                @foreach($subscribers as $subscriber)
+                    <tr class="subscriber-row">
+                        <td>
+                            <label class="checkbox-container">
+                                <input type="checkbox" class="subscriber-checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>{{ $subscriber->email }}</td>
+                        <td>{{ $subscriber->created_at->format('M d, Y') }}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn email-btn" title="Copy Email"
+                                    onclick="copyEmailToClipboard(this, '{{ $subscriber->email }}')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 
     <div class="pagination-container">
-        <div class="showing-info">Showing 1-5 of 5,621 subscribers</div>
-        <div class="pagination">
-            <button class="page-btn prev" disabled><i class="fas fa-chevron-left"></i></button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <span class="page-ellipsis">...</span>
-            <button class="page-btn">563</button>
-            <button class="page-btn next"><i class="fas fa-chevron-right"></i></button>
+        <!-- Display showing info -->
+        <div class="showing-info">
+            Showing
+            {{ $subscribers->firstItem() }} -
+            {{ $subscribers->lastItem() }} of
+            {{ $subscribers->total() }} subscribers
         </div>
-        <div class="per-page">
-            <label>
-                Show
-                <select class="per-page-select">
-                    <option>10</option>
-                    <option selected>20</option>
-                    <option>50</option>
-                    <option>100</option>
-                </select>
-                per page
-            </label>
+
+        <!-- Pagination controls -->
+        <div class="pagination">
+            <!-- Previous page button -->
+            <button class="page-btn prev" @if (!$subscribers->previousPageUrl()) disabled @endif>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!-- Page number buttons -->
+            @foreach ($subscribers->getUrlRange(1, $subscribers->lastPage()) as $page => $url)
+                <button class="page-btn {{ $page == $subscribers->currentPage() ? 'active' : '' }}" data-page="{{ $page }}">
+                    {{ $page }}
+                </button>
+            @endforeach
+
+            <!-- Next page button -->
+            <button class="page-btn next" @if (!$subscribers->nextPageUrl()) disabled @endif>
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </div>
 
-    <div class="export-modal" id="export-modal">
+    {{-- <div class="export-modal" id="export-modal">
         <div class="export-modal-content">
             <div class="export-modal-header">
                 <h3>Export Subscribers</h3>
@@ -139,7 +126,7 @@
                             </div>
                         </label>
                     </div>
-                    
+
                     <h4>Select Fields</h4>
                     <div class="export-fields">
                         <label><input type="checkbox" checked> Email</label>
@@ -151,7 +138,7 @@
                         <label><input type="checkbox"> Open Rate</label>
                         <label><input type="checkbox"> Click Rate</label>
                     </div>
-                    
+
                     <h4>Export Range</h4>
                     <div class="export-range">
                         <label class="radio-label">
@@ -174,5 +161,5 @@
                 <button class="confirm-export">Export <i class="fas fa-download"></i></button>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>

@@ -14,6 +14,7 @@
     --bg-dark: #121212;
     --bg-gray: #F5F5F5;
     --transition: all 0.3s ease;
+    --navbar-height: 70px;
 }
 
 * {
@@ -93,6 +94,32 @@ section {
     color: var(--text-muted);
     max-width: 60rem;
     margin: 0 auto;
+}
+
+.mobile-close-btn {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.close-icon {
+    font-size: 28px;
+    color: var(--primary);
+    font-weight: bold;
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.close-icon:hover {
+    color: var(--primary-dark);
+    transform: scale(1.1);
 }
 
 #hero-heading span {
@@ -1189,23 +1216,75 @@ footer {
         max-width: 85%;
     }
 
+    .mobile-close-btn {
+        display: block;
+    }
+    
     .nav-links {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 70%;
+        width: 80%;
+        max-width: 350px;
         height: 100vh;
         background-color: var(--bg-light);
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start;
+        padding-top: calc(var(--navbar-height) + 20px);
         transition: var(--transition);
-        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
         z-index: 1000;
+        overflow-y: auto;
     }
-
+    
     .nav-links.active {
         right: 0;
+    }
+    
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 18px;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        width: 100%;
+        text-align: left;
+        padding: 10px 30px;
+    }
+    
+    .nav-links.active a {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* Add delay to each menu item animation */
+    .nav-links a:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links a:nth-child(2) { transition-delay: 0.2s; }
+    .nav-links a:nth-child(3) { transition-delay: 0.3s; }
+    .nav-links a:nth-child(4) { transition-delay: 0.4s; }
+    .nav-links a:nth-child(5) { transition-delay: 0.5s; }
+    
+    /* Hamburger to X animation */
+    .mobile-menu-btn.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .mobile-menu-btn.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-btn.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* Prevent scrolling when menu is open */
+    body.no-scroll {
+        overflow: hidden;
+    }
+    
+    .nav-links a:hover {
+        background-color: var(--bg-gray);
+        color: var(--primary);
     }
 
     .hero-image {

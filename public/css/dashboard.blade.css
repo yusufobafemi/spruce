@@ -945,7 +945,7 @@ body.dark-mode .progress-container {
 
 /* Add an overlay with "Not Available" text */
 .split-section::before {
-    content: "Not Available";
+    /* content: "Not Available"; */
     position: absolute;
     top: 0;
     left: 0;

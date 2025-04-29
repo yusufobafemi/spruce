@@ -8,7 +8,7 @@
 
 
 <!-- Charts Section -->
-<div class="charts-container split-section">
+<div class="charts-container split-section" style="display:none">
     <div class="chart-card visitors-chart">
         <div class="chart-header">
             <h3>Visitor Traffic</h3>
@@ -97,7 +97,7 @@
 </div>--}}
 
 <!-- Top Referrers and Devices -->
-<div class="split-section">
+<div class="split-section" style="display:none">
     <div class="referrers-card">
         <div class="section-header">
             <h2>Top Referrers</h2>
