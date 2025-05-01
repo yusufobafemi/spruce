@@ -81,7 +81,7 @@
                     <img loading="lazy" src="{{ asset('images/logo-dark.png') }}" alt="Spruce smart facility management logo">
                 </a>
             </div>
-            <nav aria-label="Main navigation">
+            <nav role="navigation" aria-label="Primary Navigation" aria-label="Main navigation">
                 <ul class="nav-links">
                     <!-- Close button for mobile only -->
                     <div class="mobile-close-btn">
@@ -179,8 +179,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script defer src="{{ asset('js/script.js') }}"></script>
+    <script defer src="https://unpkg.com/aos@next/dist/aos.js"></script>
     @yield('scripts')
 </body>
 </html>

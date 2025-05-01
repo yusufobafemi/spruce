@@ -26,7 +26,6 @@ Route::post('/logout', function () {
     return redirect('/'); // Redirect to the home page
 })->name('logout');
 
-
 Route::get('/', [AppLinkController::class, 'showLanding']);
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
