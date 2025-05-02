@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Spruce – Laravel Landing Page + Admin Metrics Dashboard
 
 **Spruce** is a Laravel-powered web app featuring a marketing-friendly landing page and an admin-only backend dashboard to monitor key user activity, transactions, and system metrics in real time.
@@ -58,3 +59,7 @@ php artisan migrate --seed
 
 # 6. Serve the app
 php artisan serve
+=======
+# spruce
+Laravel-powered landing page with secure admin dashboard for monitoring user metrics, transactions, and real-time activity built with Blade, jQuery, and AJAX.
+>>>>>>> 4a4dbbe626e8e1f2ba36134be9e650c4d20826e9
