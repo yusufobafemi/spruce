@@ -3,35 +3,59 @@
 @section('content')
     <!-- Schema Markup: WebPage -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Spruce - A Smarter Facility Solution",
-        "description": "Revolutionizing bill payments and facility access management for residents, facility managers, and property owners.",
-        "url": "{{ url('/') }}",
-        "publisher": {
-            "@type": "Organization",
-            "name": "Spruce",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ asset('lovable-uploads/c580f324-d717-4f95-9134-4fd26a3f4dcc.png') }}"
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Spruce - A Smarter Facility Solution",
+            "description": "Revolutionizing bill payments and facility access management for residents, facility managers, and property owners.",
+            "url": "{{ url('/') }}",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Spruce",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ asset('lovable-uploads/c580f324-d717-4f95-9134-4fd26a3f4dcc.png') }}"
+                }
             }
         }
-    }
-    </script>
+        </script>
+    <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "MobileApplication",
+              "name": "Spruce",
+              "operatingSystem": "iOS, Android",
+              "applicationCategory": "LifestyleApplication",
+              "url": "{{ url('/') }}",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "1200"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "NGN"
+              }
+            }
+            </script>
 
     <!-- Hero Section -->
     <section id="hero" aria-labelledby="hero-heading">
         <div class="container">
             <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
                 <h1 id="hero-heading"><span>Revolutionizing</span> Bill Payments and Facility Access Management</h1>
-                <p>Spruce is a next-generation app designed for individuals and facilities. It simplifies <a href="{{ url('/products/bill-payments') }}">bill payments</a> and streamlines <a href="{{ url('/products/visitor-management') }}">guest access management</a> for residents, facility managers, and property owners.</p>
+                <p>Spruce is a next-generation app designed for individuals and facilities. It simplifies <a
+                        href="{{ url('/products/bill-payments') }}">bill payments</a> and streamlines <a
+                        href="{{ url('/products/visitor-management') }}">guest access management</a> for residents, facility
+                    managers, and property owners.</p>
                 <div class="hero-buttons">
                     <a href="#download" class="btn btn-primary">Download App</a>
                 </div>
             </div>
             <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <img src="{{ asset('images/hero.png') }}" alt="Spruce mobile app interface">
+                <img src="{{ asset('images/hero.png') }}"
+                    alt="Spruce app dashboard for estate bill payment and visitor management">
                 <div class="circle-decoration circle-1"></div>
                 <div class="circle-decoration circle-2"></div>
                 <div class="circle-decoration circle-3"></div>
@@ -45,7 +69,8 @@
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2 id="features-heading">SPRUCE <span>Core Functionality</span></h2>
-                <p>A complete solution for all <a href="{{ url('/products/facility-access') }}">estate management</a> needs</p>
+                <p>A complete solution for all <a href="{{ url('/products/facility-access') }}">estate management</a> needs
+                </p>
             </div>
             <div class="features-grid">
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
@@ -89,7 +114,7 @@
                     </div>
                     <h3>Smart AI Chat Assistance</h3>
                     <p>Hiki helps users with instant, accurate answers and personalized support 24/7.</p>
-                </div>                
+                </div>
             </div>
         </div>
     </section>
@@ -103,7 +128,8 @@
             </div>
             <div class="benefits-wrapper">
                 <div class="benefits-image" data-aos="fade-right">
-                    <img loading="lazy" src="{{ asset('images/payment_confirmation.png') }}" alt="Spruce payment confirmation screen">
+                    <img loading="lazy" src="{{ asset('images/payment_confirmation.png') }}"
+                        alt="Spruce payment confirmation screen">
                     <div class="circle-decoration"></div>
                 </div>
                 <div class="benefits-list">
@@ -152,7 +178,8 @@
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2 id="process-heading">Implementation <span>Process</span></h2>
-                <p>A seamless transition to better <a href="{{ url('/products/facility-access') }}">estate management</a></p>
+                <p>A seamless transition to better <a href="{{ url('/products/facility-access') }}">estate management</a>
+                </p>
             </div>
             <div class="process-timeline">
                 <div class="process-step" data-aos="fade-right">
@@ -209,16 +236,17 @@
         <div class="container">
             <div class="download-content" data-aos="fade-right">
                 <h2 id="download-heading">Download the <span>Spruce App</span></h2>
-                <p>Experience effortless bill payments and visitor management on your smartphone. Available for iOS and Android devices.</p>
+                <p>Experience effortless bill payments and visitor management on your smartphone. Available for iOS and
+                    Android devices.</p>
                 <div class="download-buttons">
                     <a href="{{ route('track.download', 'apple') }}" class="download-btn" target="_blank" rel="noopener">
                         <i class="fab fa-apple"></i>
                         <span>Download on<br><strong>App Store</strong></span>
-                    </a>  
+                    </a>
                     <a href="{{ route('track.download', 'google') }}" class="download-btn" target="_blank" rel="noopener">
                         <i class="fab fa-google-play"></i>
                         <span>Get it on<br><strong>Google Play</strong></span>
-                    </a>                                        
+                    </a>
                 </div>
                 <div class="download-features">
                     <div class="download-feature">
@@ -236,8 +264,10 @@
                 </div>
             </div>
             <div class="download-image" data-aos="fade-left">
-                {{-- <img loading="lazy" src="{{ asset('images/mock-up.png') }}" alt="Spruce app QR code" class="qr-image"> --}}
-                <img loading="lazy" src="{{ asset('images/mock-up.png') }}" alt="Spruce app screenshots" class="app-screenshot">
+                {{-- <img loading="lazy" src="{{ asset('images/mock-up.png') }}" alt="Spruce app QR code" class="qr-image">
+                --}}
+                <img loading="lazy" src="{{ asset('images/mock-up.png') }}" alt="Spruce app screenshots"
+                    class="app-screenshot">
                 <div class="circle-decoration"></div>
             </div>
         </div>
@@ -253,17 +283,20 @@
                 <div class="newsletter-content" data-aos="fade-right">
                     <h2 id="newsletter-heading">Stay Updated with <span>Spruce</span></h2>
                     <p>Subscribe to our newsletter for the latest news, updates, and special offers.</p>
-                    <form id="newsletter-form" class="newsletter-form" action="{{ route('newsletter.subscribe') }}" method="POST">
+                    <form id="newsletter-form" class="newsletter-form" action="{{ route('newsletter.subscribe') }}"
+                        method="POST">
                         @csrf
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Enter your email address" required aria-label="Email address">
+                            <input type="email" name="email" placeholder="Enter your email address" required
+                                aria-label="Email address">
                             <button type="submit" class="btn btn-primary">Subscribe</button>
                         </div>
                         <div class="form-message"></div>
                     </form>
                 </div>
                 <div class="newsletter-image" data-aos="fade-left">
-                    <img loading="lazy" src="{{ asset('images/subscribe.png') }}" alt="Spruce smart facility management logo in gold">
+                    <img loading="lazy" src="{{ asset('images/subscribe.png') }}"
+                        alt="Spruce smart facility management logo in gold">
                     <div class="circle-decoration"></div>
                 </div>
             </div>

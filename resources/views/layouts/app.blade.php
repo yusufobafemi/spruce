@@ -22,11 +22,11 @@
     <meta property="og:description" content="{{ $seo['description'] ?? 'Revolutionizing bill payments and facility access management.' }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ asset('images/mock-up.png') }}">
+    <meta property="og:image" content="{{ asset('images/spruce-thumbnail.png') }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $seo['title'] ?? 'Spruce - A Smarter Facility Solution' }}">
     <meta name="twitter:description" content="{{ $seo['description'] ?? 'Revolutionizing bill payments and facility access management.' }}">
-    <meta name="twitter:image" content="{{ asset('images/mock-up.png') }}">
+    <meta name="twitter:image" content="{{ asset('images/spruce-thumbnail.png') }}">
 
     <!-- Preload critical assets -->
     <link rel="preload" href="{{ asset('css/styles.css') }}" as="style">

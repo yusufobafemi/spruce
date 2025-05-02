@@ -9,6 +9,7 @@ use App\Http\Controllers\AppLinkController;
 use App\Http\Controllers\DownloadClickController;
 use App\Http\Controllers\DashboardStatsController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/generate-sitemap', [SitemapController::class, 'generate']);
+
 
 Route::post('/logout', function () {
     Auth::logout(); // Log out the user
